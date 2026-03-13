@@ -1,0 +1,14 @@
+services:
+  classnotes-share:
+    container_name: classnotes-share
+    build: .
+    ports:
+      - "3160:3160"
+    environment:
+      PORT: "3160"
+      VAULT_ROOT: "/vault/B 学科"
+    volumes:
+      - ./data:/app/data
+      # Replace the host path below with your own Obsidian study vault root.
+      - ${VAULT_HOST_PATH:-./example-vault}:/vault:ro
+    restart: unless-stopped
